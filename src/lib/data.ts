@@ -55,7 +55,8 @@ export const AGENTS: Agent[] = [
 ]
 
 export const ACTIVITIES: Activity[] = [
-  { id: 10, date: '2026-07-07', type: 'deploy',  product: 'DevOS Control Center', description: 'DevOS Control Center deployed to Vercel production',                 status: 'success' },
+  { id: 11, date: '2026-07-07', type: 'qa',      product: 'DevOS Control Center', description: 'QA Agent: 15/15 Playwright checks passed for DevOS Control Center',  status: 'success' },
+  { id: 10, date: '2026-07-07', type: 'deploy',  product: 'DevOS Control Center', description: 'DevOS Control Center v0.1.0 deployed — 9-module CEO dashboard live', status: 'success' },
   { id: 9,  date: '2026-07-07', type: 'growth',  product: 'All Products',          description: 'Growth Agent generated packages for QuickQR, ImageCompress, OGImageGen', status: 'success' },
   { id: 8,  date: '2026-07-07', type: 'deploy',  product: 'OGImageGen',            description: 'OGImageGen v0.1.0 deployed — 15/15 QA pass',                       status: 'success' },
   { id: 7,  date: '2026-07-07', type: 'qa',      product: 'OGImageGen',            description: 'QA Agent: 15/15 Playwright checks passed for OGImageGen',           status: 'success' },
@@ -118,10 +119,10 @@ export const FINANCE: FinanceLine[] = [
 ]
 
 export const HEALTH_SCORE = {
-  total: 75,
+  total: 78,
   breakdown: [
     { label: 'Pipeline',  score: 100, max: 100, color: 'emerald' },
-    { label: 'Products',  score: 85,  max: 100, color: 'emerald' },
+    { label: 'Products',  score: 90,  max: 100, color: 'emerald' },
     { label: 'Growth',    score: 40,  max: 100, color: 'amber'   },
     { label: 'Analytics', score: 0,   max: 100, color: 'red'     },
     { label: 'Finance',   score: 90,  max: 100, color: 'emerald' },

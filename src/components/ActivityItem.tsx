@@ -1,19 +1,23 @@
 import type { Activity, ActivityType } from '@/lib/types'
 
 const dotColors: Record<ActivityType, string> = {
-  deploy : 'bg-blue-400',
-  qa     : 'bg-emerald-400',
-  agent  : 'bg-purple-400',
-  growth : 'bg-teal-400',
-  plan   : 'bg-amber-400',
+  deploy   : 'bg-blue-400',
+  qa       : 'bg-emerald-400',
+  agent    : 'bg-purple-400',
+  growth   : 'bg-teal-400',
+  plan     : 'bg-amber-400',
+  strategy : 'bg-indigo-400',
+  brief    : 'bg-sky-400',
 }
 
 const labelColors: Record<ActivityType, string> = {
-  deploy : 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-  qa     : 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
-  agent  : 'text-purple-400 bg-purple-400/10 border-purple-400/30',
-  growth : 'text-teal-400 bg-teal-400/10 border-teal-400/30',
-  plan   : 'text-amber-400 bg-amber-400/10 border-amber-400/30',
+  deploy   : 'text-blue-400 bg-blue-400/10 border-blue-400/30',
+  qa       : 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
+  agent    : 'text-purple-400 bg-purple-400/10 border-purple-400/30',
+  growth   : 'text-teal-400 bg-teal-400/10 border-teal-400/30',
+  plan     : 'text-amber-400 bg-amber-400/10 border-amber-400/30',
+  strategy : 'text-indigo-400 bg-indigo-400/10 border-indigo-400/30',
+  brief    : 'text-sky-400 bg-sky-400/10 border-sky-400/30',
 }
 
 export default function ActivityItem({ activity }: { activity: Activity }) {

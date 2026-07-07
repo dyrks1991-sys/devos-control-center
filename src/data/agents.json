@@ -1,0 +1,65 @@
+[
+  {
+    "id": "strategy",
+    "name": "Strategy Agent",
+    "file": "agents/product-strategy.js",
+    "status": "operational",
+    "version": "v2",
+    "sprint": 3,
+    "description": "7-dimension scoring model — ranks product ideas by market opportunity"
+  },
+  {
+    "id": "planner",
+    "name": "Planner Agent",
+    "file": "agents/planner.js",
+    "status": "operational",
+    "version": "v1",
+    "sprint": 4,
+    "description": "Generates 7 planning documents (PRD, TECH_SPEC, UI_PLAN, TASKS, ROADMAP, CHECKLIST, DECISIONS)"
+  },
+  {
+    "id": "bootstrap",
+    "name": "Bootstrap Agent",
+    "file": "agents/bootstrap.js",
+    "status": "operational",
+    "version": "v2",
+    "sprint": 2,
+    "description": "Scaffolds full Next.js 14 project with Tailwind, TypeScript, fonts, config"
+  },
+  {
+    "id": "developer",
+    "name": "Developer Agent",
+    "file": "agents/developer.js",
+    "status": "operational",
+    "version": "v1",
+    "sprint": 5,
+    "description": "Reads TASKS.md and executes implementation tasks"
+  },
+  {
+    "id": "qa",
+    "name": "QA Agent",
+    "file": "agents/qa.js",
+    "status": "operational",
+    "version": "v1",
+    "sprint": 5,
+    "description": "Runs 15 Playwright checks per project — build, serve, test, report"
+  },
+  {
+    "id": "deploy",
+    "name": "Deploy Agent",
+    "file": "agents/deploy.js",
+    "status": "operational",
+    "version": "v1",
+    "sprint": 5,
+    "description": "GitHub push + Vercel deploy + HTTP 200 verification + triggers Growth Agent"
+  },
+  {
+    "id": "growth",
+    "name": "Growth Agent",
+    "file": "agents/growth.js",
+    "status": "operational",
+    "version": "v1",
+    "sprint": 8,
+    "description": "SEO audit, social media drafts, launch plans, KPI dashboards per product"
+  }
+]

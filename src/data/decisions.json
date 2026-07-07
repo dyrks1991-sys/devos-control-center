@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "priority": "P0",
+    "category": "blocking",
+    "status": "open",
+    "title": "Legal Review: yt-dlp / YouTube ToS",
+    "project": "touchcut",
+    "description": "yt-dlp usage violates YouTube Terms of Service. Legal review required before any development can proceed on touchcut.",
+    "since": "2026-07-05"
+  },
+  {
+    "id": 2,
+    "priority": "P1",
+    "category": "blocking",
+    "status": "open",
+    "title": "CEO Decision: GPU Compute Pricing Model",
+    "project": "touchcut",
+    "description": "GPU processing costs at scale are unproven. Need CEO to define pricing model (subscription vs. per-minute) before architecture is finalized.",
+    "since": "2026-07-05"
+  },
+  {
+    "id": 3,
+    "priority": "P1",
+    "category": "blocking",
+    "status": "open",
+    "title": "CEO Decision: Copyright of Derived Works",
+    "project": "touchcut",
+    "description": "Edited video clips derived from copyrighted material. Need legal clarity on DMCA liability and user indemnification model.",
+    "since": "2026-07-05"
+  },
+  {
+    "id": 4,
+    "priority": "P1",
+    "category": "growth",
+    "status": "open",
+    "title": "Configure Analytics on All Products",
+    "project": "all",
+    "description": "Zero analytics configured on any live product. Cannot measure growth, retention, or conversion. Estimated 2-hour setup for GA4 + Search Console.",
+    "since": "2026-07-07"
+  },
+  {
+    "id": 5,
+    "priority": "P2",
+    "category": "growth",
+    "status": "open",
+    "title": "Approve QuickQR SEO Sprint",
+    "project": "quickqr",
+    "description": "QuickQR SEO score is 34/100 — missing robots.txt, sitemap, JSON-LD, OG tags. Same treatment as ImageCompress Sprint 6 raised score from 34 to 92.",
+    "since": "2026-07-07"
+  },
+  {
+    "id": 6,
+    "priority": "P2",
+    "category": "growth",
+    "status": "open",
+    "title": "Schedule Product Hunt Launch — OGImageGen",
+    "project": "ogimagegen",
+    "description": "OGImageGen has highest Product Hunt potential of the 3 products. Growth package ready. Needs screenshot prep, demo video, and coordinated launch day.",
+    "since": "2026-07-07"
+  }
+]

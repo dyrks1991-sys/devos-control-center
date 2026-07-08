@@ -1,0 +1,132 @@
+[
+  {
+    "id": "t014",
+    "date": "2026-07-09",
+    "type": "sprint",
+    "title": "Sprint 14 — AI CEO Assistant",
+    "description": "AI briefing engine, Decision Center with AI recommendations, Agent Activity Feed, and Company Timeline. Control Center v3.",
+    "sprint": 14,
+    "status": "in-progress"
+  },
+  {
+    "id": "t013",
+    "date": "2026-07-08",
+    "type": "sprint",
+    "title": "Sprint 13 — Control Center v2",
+    "description": "Complete rebuild of Control Center as CEO operating dashboard. 10-panel layout, widget system, datasource layer, PWA support. 15/15 QA pass.",
+    "sprint": 13,
+    "status": "success"
+  },
+  {
+    "id": "t013b",
+    "date": "2026-07-08",
+    "type": "architecture",
+    "title": "Datasource layer introduced",
+    "description": "src/lib/datasources/ pattern established — each data source (GA4, Vercel, GitHub) isolated behind typed interface. Mock → real API swap requires zero UI changes.",
+    "status": "success"
+  },
+  {
+    "id": "t013c",
+    "date": "2026-07-08",
+    "type": "architecture",
+    "title": "Widget system built",
+    "description": "Reusable widget library created: Widget (card wrapper), Metric, SeoScore, StatusPill. All dashboard panels share the same design language.",
+    "status": "success"
+  },
+  {
+    "id": "t013d",
+    "date": "2026-07-08",
+    "type": "milestone",
+    "title": "iPhone PWA enabled",
+    "description": "DevOS Control Center installable as standalone iPhone app. manifest.json + apple-mobile-web-app meta tags. Zero native code required.",
+    "status": "success"
+  },
+  {
+    "id": "t012",
+    "date": "2026-07-07",
+    "type": "sprint",
+    "title": "Sprint 12 — Growth Validation",
+    "description": "QuickQR SEO improved 34→82. GA4 analytics code deployed to all 3 products. Product Hunt launch assets prepared for OGImageGen. Growth dashboard created.",
+    "sprint": 12,
+    "status": "success"
+  },
+  {
+    "id": "t012b",
+    "date": "2026-07-07",
+    "type": "growth",
+    "title": "QuickQR SEO: 34 → 82",
+    "description": "robots.txt, sitemap.xml, JSON-LD schema, Open Graph, Twitter Card, H1 optimization, FAQ section, internal cross-links, canonical URL. Targeting 2.7M/mo keyword.",
+    "product": "QuickQR",
+    "status": "success"
+  },
+  {
+    "id": "t011",
+    "date": "2026-07-06",
+    "type": "sprint",
+    "title": "Sprint 11 — Agent SDK v1.0.0",
+    "description": "BaseAgent class + 6 modules (Logger, EventBus, Config, Memory, Reporter, Timer). Deploy and QA agents upgraded to SDK v1.1.0. events.json auto-populated.",
+    "sprint": 11,
+    "status": "success"
+  },
+  {
+    "id": "t011b",
+    "date": "2026-07-06",
+    "type": "agent",
+    "title": "EventBus live — events.json auto-populated",
+    "description": "All agent activity now persists to company/events.json via EventBus. Singleton bus shared across all agents. Non-blocking: failures never crash agents.",
+    "status": "success"
+  },
+  {
+    "id": "t010",
+    "date": "2026-07-05",
+    "type": "sprint",
+    "title": "Sprint 10 — Architecture Foundation",
+    "description": "company/*.json canonical data layer established. db.ts abstraction boundary created. Control Center deployed to Vercel. BACKEND_EVOLUTION_PLAN.md authored.",
+    "sprint": 10,
+    "status": "success"
+  },
+  {
+    "id": "t010b",
+    "date": "2026-07-05",
+    "type": "architecture",
+    "title": "company/*.json canonical data layer",
+    "description": "products.json, agents.json, events.json, decisions.json, finance.json are now the single source of truth for the entire company. db.ts is the only boundary that changes.",
+    "status": "success"
+  },
+  {
+    "id": "t007",
+    "date": "2026-07-04",
+    "type": "launch",
+    "title": "OGImageGen goes live",
+    "description": "Third product launched: OGImageGen — Open Graph image generator for developers. High SEO score. Product Hunt assets prepared.",
+    "product": "OGImageGen",
+    "status": "success"
+  },
+  {
+    "id": "t006",
+    "date": "2026-07-03",
+    "type": "launch",
+    "title": "ImageCompress goes live",
+    "description": "Second product launched: ImageCompress — browser-side image compression with no uploads. SEO score 92/100.",
+    "product": "ImageCompress",
+    "status": "success"
+  },
+  {
+    "id": "t005",
+    "date": "2026-07-02",
+    "type": "launch",
+    "title": "QuickQR goes live",
+    "description": "First product launched: QuickQR — free QR code generator, no sign-up required. First live product of the DevOS portfolio.",
+    "product": "QuickQR",
+    "status": "success"
+  },
+  {
+    "id": "t001",
+    "date": "2026-07-01",
+    "type": "milestone",
+    "title": "DevOS company founded",
+    "description": "Bootstrap agent created. First Next.js project generated from a single command. Autonomous software company architecture established.",
+    "sprint": 1,
+    "status": "success"
+  }
+]

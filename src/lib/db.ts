@@ -12,12 +12,18 @@
  *   Phase 3 (Scale):  fetch('/api/products') (full backend, auth, caching)
  */
 
-import type { Product, Agent, Activity, Approval, GrowthMetric, FinanceLine, HealthScore, KPI } from './types'
+import type { Product, Agent, Activity, Approval, GrowthMetric, FinanceLine, HealthScore, KPI, ProductKPI, TimelineEvent, Recommendation, Initiative, LearningRecord, DecisionEngineOutput } from './types'
+import { generateRecommendations }  from './intelligence/recommendations'
+import { runDecisionEngine }        from './intelligence/decisionEngine'
+import { getConnectorReport as _getConnectorReport } from './connectors/connectorManager'
 
-import productsRaw  from '../data/products.json'
-import agentsRaw    from '../data/agents.json'
-import decisionsRaw from '../data/decisions.json'
-import eventsRaw    from '../data/events.json'
+import productsRaw    from '../data/products.json'
+import agentsRaw      from '../data/agents.json'
+import decisionsRaw   from '../data/decisions.json'
+import eventsRaw      from '../data/events.json'
+import timelineRaw    from '../data/timeline.json'
+import initiativesRaw from '../data/initiatives.json'
+import learningRaw    from '../data/learning.json'
 
 // ─── Products ─────────────────────────────────────────────────────────────────
 
@@ -85,12 +91,12 @@ export function getGrowthMetrics(): GrowthMetric[] {
     productId:            p.id,
     seoScore:             p.seoScore,
     grade:                seoGrade(p.seoScore),
-    hasRobots:            p.id === 'imagecompress',
-    hasSitemap:           p.id === 'imagecompress',
+    hasRobots:            p.id === 'imagecompress' || p.id === 'quickqr',
+    hasSitemap:           p.id === 'imagecompress' || p.id === 'quickqr',
     analyticsConfigured:  false,
-    topGap:               p.id === 'quickqr'       ? 'Missing robots.txt, sitemap, JSON-LD, all OG/Twitter tags'
-                        : p.id === 'imagecompress' ? 'Analytics not configured (analytics.ts stubs only)'
-                        : 'Vercel preview URL — robots.txt blocked by platform; needs production domain',
+    topGap:               p.id === 'quickqr'       ? 'SEO sprint complete — connect GA4 + submit to Search Console'
+                        : p.id === 'imagecompress' ? 'Analytics not configured — add GA4 Measurement ID to Vercel env'
+                        : 'SEO 57/100 — missing FAQ content, OG image needed, submit to Search Console',
     launchStatus: { reddit: false, hackerNews: false, productHunt: false, devTo: false },
   }))
 }
@@ -149,17 +155,117 @@ export function getHealthScore(): HealthScore {
 }
 
 // ─── KPIs ─────────────────────────────────────────────────────────────────────
-// Placeholder KPIs — populated by Analytics Agent (Sprint 13) and future agents.
+// KPI data structure ready for GA4 ingestion. Until analytics is live, traffic
+// metrics show 'N/A' — the structure is stable and won't change when GA4 connects.
 
 export function getKPIs(): KPI[] {
   const products = getLiveProducts()
+  const avgSeo   = Math.round(products.reduce((s, p) => s + p.seoScore, 0) / (products.length || 1))
   return [
-    { id: 'products-live',    label: 'Products Live',     value: products.length,  target: 10,    unit: '',       trend: 'up',      source: 'manual',  updatedAt: '2026-07-07' },
-    { id: 'agents-online',    label: 'Agents Online',     value: getOperationalAgents().length, target: 7, unit: '', trend: 'flat', source: 'manual', updatedAt: '2026-07-07' },
-    { id: 'monthly-revenue',  label: 'Monthly Revenue',   value: 0,                target: 1000,  unit: '$',      trend: 'flat',    source: 'stripe',  updatedAt: '2026-07-07' },
-    { id: 'monthly-visitors', label: 'Monthly Visitors',  value: 'N/A',            target: 10000, unit: '',       trend: 'unknown', source: 'ga4',     updatedAt: '2026-07-07' },
-    { id: 'avg-seo-score',    label: 'Avg SEO Score',     value: Math.round(products.reduce((s,p) => s + p.seoScore, 0) / (products.length || 1)), target: 85, unit: '/100', trend: 'unknown', source: 'manual', updatedAt: '2026-07-07' },
+    { id: 'monthly-visitors', label: 'Monthly Visitors',  value: 'N/A',           target: 100,   unit: '',       trend: 'unknown', source: 'ga4',    updatedAt: '2026-07-07' },
+    { id: 'monthly-sessions', label: 'Monthly Sessions',  value: 'N/A',           target: 150,   unit: '',       trend: 'unknown', source: 'ga4',    updatedAt: '2026-07-07' },
+    { id: 'page-views',       label: 'Page Views',        value: 'N/A',           target: 300,   unit: '',       trend: 'unknown', source: 'ga4',    updatedAt: '2026-07-07' },
+    { id: 'avg-seo-score',    label: 'Avg SEO Score',     value: avgSeo,          target: 85,    unit: '/100',   trend: avgSeo > 60 ? 'up' : 'flat', source: 'manual', updatedAt: '2026-07-07' },
+    { id: 'products-live',    label: 'Products Live',     value: products.length, target: 5,     unit: '',       trend: 'up',      source: 'manual', updatedAt: '2026-07-07' },
+    { id: 'monthly-revenue',  label: 'Monthly Revenue',   value: '$0',            target: '$500', unit: '',      trend: 'flat',    source: 'stripe', updatedAt: '2026-07-07' },
   ]
+}
+
+// ─── Q3 Target ────────────────────────────────────────────────────────────────
+
+export function getQ3Targets(): import('./types').Q3Target[] {
+  const products = getLiveProducts()
+  const avgSeo   = Math.round(products.reduce((s, p) => s + p.seoScore, 0) / (products.length || 1))
+  return [
+    {
+      label:   'Real Users (Q3)',
+      current: 0,
+      target:  100,
+      unit:    'users',
+      percent: 0,
+      status:  'not-started',
+      note:    'Analytics not yet connected — configure GA4 to start measuring',
+    },
+    {
+      label:   'Average SEO Score',
+      current: avgSeo,
+      target:  85,
+      unit:    '/100',
+      percent: Math.round((avgSeo / 85) * 100),
+      status:  avgSeo >= 70 ? 'on-track' : 'at-risk',
+      note:    'QuickQR SEO sprint in progress — target 85+ across all products',
+    },
+    {
+      label:   'Products Live',
+      current: products.length,
+      target:  5,
+      unit:    'products',
+      percent: Math.round((products.length / 5) * 100),
+      status:  'on-track',
+      note:    'On track — new product planned for Sprint 14',
+    },
+    {
+      label:   'Monthly Revenue',
+      current: '$0',
+      target:  '$500',
+      unit:    '',
+      percent: 0,
+      status:  'not-started',
+      note:    'Monetization sprint planned for Sprint 15 after traffic data is available',
+    },
+  ]
+}
+
+// ─── Product KPIs (per-product tracking row) ─────────────────────────────────
+
+export function getProductKPIs(): ProductKPI[] {
+  return getLiveProducts().map(p => ({
+    productId:          p.id,
+    visitors:           'N/A',
+    sessions:           'N/A',
+    seoScore:           p.seoScore,
+    healthScore:        p.id === 'imagecompress' ? 92 : p.id === 'ogimagegen' ? 72 : 58,
+    launchDate:         p.launchDate,
+    growthStatus:       (p.seoScore >= 80 ? 'stable' : 'not-started') as ProductKPI['growthStatus'],
+    lastUpdated:        p.launchDate,
+    analyticsConnected: false,
+  }))
+}
+
+// ─── Company Timeline ─────────────────────────────────────────────────────────
+
+export function getTimeline(): TimelineEvent[] {
+  return (timelineRaw as TimelineEvent[]).sort((a, b) => b.date.localeCompare(a.date))
+}
+
+// ─── AI Recommendations (Sprint 14 — kept for backward compat) ───────────────
+
+export function getRecommendations(): Recommendation[] {
+  return generateRecommendations(getProducts(), getDecisions(), getHealthScore())
+}
+
+// ─── Initiatives + ROI Engine (Sprint 15) ────────────────────────────────────
+
+export function getInitiatives(): Initiative[] {
+  return initiativesRaw as Initiative[]
+}
+
+// ─── Learning Layer (Sprint 15) ───────────────────────────────────────────────
+
+export function getLearningRecords(): LearningRecord[] {
+  return learningRaw as unknown as LearningRecord[]
+}
+
+// ─── Decision Engine (Sprint 15) — orchestrates ROI + ranking + simulation ───
+
+export function getDecisionEngineOutput(): DecisionEngineOutput {
+  return runDecisionEngine(getInitiatives(), getLearningRecords())
+}
+
+// ─── Connector Layer (Sprint 16) ─────────────────────────────────────────────
+
+export function getConnectorReport() {
+  return _getConnectorReport()
 }
 
 // ─── Summary Stats (used by overview page) ───────────────────────────────────

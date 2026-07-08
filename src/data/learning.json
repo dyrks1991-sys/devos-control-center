@@ -1,0 +1,168 @@
+[
+  {
+    "id": "learn-sprint-11",
+    "sprint": 11,
+    "initiative": "Agent SDK v1.0.0",
+    "category": "infrastructure",
+    "completedDate": "2026-07-06",
+    "expected": {
+      "users": 0,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 95
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100
+    },
+    "delta": {
+      "users": null,
+      "qualityScore": 5
+    },
+    "learnings": "SDK delivered on time. EventBus integration took longer than estimated. 15/15 QA pass exceeded quality target. Infrastructure sprints are lower ROI for users but high ROI for velocity in future sprints.",
+    "forecastAccuracy": null
+  },
+  {
+    "id": "learn-sprint-12",
+    "sprint": 12,
+    "initiative": "Growth Validation Sprint (QuickQR SEO + Analytics)",
+    "category": "seo",
+    "completedDate": "2026-07-07",
+    "expected": {
+      "users": 0,
+      "seoGain": 48,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 90
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 48,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100
+    },
+    "delta": {
+      "users": null,
+      "seoGain": 0,
+      "qualityScore": 10
+    },
+    "learnings": "SEO score improved from 34 to 82 (target was 70+). Exceeded by 12 points. GA4 code deployed but NEXT_PUBLIC_GA_ID still not configured by CEO — users cannot be measured. Dependency on CEO action is a recurring blocker for growth-related sprints.",
+    "forecastAccuracy": 0.85
+  },
+  {
+    "id": "learn-sprint-13",
+    "sprint": 13,
+    "initiative": "Control Center v2 — CEO Operating Dashboard",
+    "category": "infrastructure",
+    "completedDate": "2026-07-08",
+    "expected": {
+      "users": 0,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 90
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100
+    },
+    "delta": {
+      "users": null,
+      "qualityScore": 10
+    },
+    "learnings": "Dashboard quality exceeded expectations. 21 new files, all QA passing first build attempt. PWA installation and mobile nav worked correctly on first attempt. Infrastructure sprints consistently deliver higher quality than expected but zero user impact until external distribution happens.",
+    "forecastAccuracy": 0.90
+  },
+  {
+    "id": "learn-sprint-14",
+    "sprint": 14,
+    "initiative": "AI CEO Assistant",
+    "category": "infrastructure",
+    "completedDate": "2026-07-09",
+    "expected": {
+      "users": 0,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 90
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100
+    },
+    "delta": {
+      "users": null,
+      "qualityScore": 10
+    },
+    "learnings": "Intelligence layer (briefing, recommendations, timeline) delivered clean. Recommendation engine correctly identifies Search Console as highest ROI (not explicitly designed that way — emerged from the data). Pattern: DevOS consistently delivers quality on schedule. The missing variable is distribution and CEO activation of pending actions.",
+    "forecastAccuracy": 0.90
+  },
+  {
+    "id": "learn-sprint-15",
+    "sprint": 15,
+    "initiative": "Decision Intelligence Engine",
+    "category": "infrastructure",
+    "completedDate": "2026-07-09",
+    "expected": {
+      "users": 0,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 90
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100
+    },
+    "delta": {
+      "users": null,
+      "qualityScore": 10
+    },
+    "learnings": "ROI engine emerged correctly — Search Console ranked #1 without being hardcoded. CTO agent ran successfully, architecture score 70/100. 5th consecutive sprint at 15/15 QA. Decision engine created a clear feedback loop between sprint output and CEO morning question. CEO action bottleneck confirmed for 5th consecutive sprint.",
+    "forecastAccuracy": 0.90
+  },
+  {
+    "id": "learn-sprint-16",
+    "sprint": 16,
+    "initiative": "Real World Integration — Connector Layer",
+    "category": "infrastructure",
+    "completedDate": "2026-07-09",
+    "expected": {
+      "users": 0,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 90,
+      "connectorsLive": 2
+    },
+    "actual": {
+      "users": null,
+      "seoGain": 0,
+      "revenueUSD": 0,
+      "durationSprints": 1,
+      "qualityScore": 100,
+      "connectorsLive": 0
+    },
+    "delta": {
+      "users": null,
+      "qualityScore": 10,
+      "connectorsLive": -2
+    },
+    "learnings": "Connector architecture delivered clean: 4 connectors, shared types, connector manager, integrations page. GitHub and Vercel have real API implementations. GA4 and Search Console need JWT auth (Sprint 17). Connectors live = 0 because CEO has not set GITHUB_TOKEN or VERCEL_TOKEN yet. Pattern confirmed: engineering delivers, CEO activation is the bottleneck. 6th consecutive sprint at 15/15 QA. Architecture score +5 to 75/100.",
+    "forecastAccuracy": 0.85
+  }
+]

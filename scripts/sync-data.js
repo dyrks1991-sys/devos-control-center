@@ -17,7 +17,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..')
 const COMPANY_DIR  = path.resolve(PROJECT_ROOT, '../../company')
 const DATA_DIR     = path.resolve(PROJECT_ROOT, 'src/data')
 
-const FILES = ['products.json', 'agents.json', 'decisions.json', 'events.json']
+const FILES = ['products.json', 'agents.json', 'decisions.json', 'events.json', 'timeline.json', 'initiatives.json', 'learning.json']
 
 if (!fs.existsSync(COMPANY_DIR)) {
   // Running on Vercel or a machine without the monorepo — use committed src/data/ files

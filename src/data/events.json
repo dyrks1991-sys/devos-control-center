@@ -1,5 +1,85 @@
 [
   {
+    "id": 21,
+    "date": "2026-07-08",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 20,
+    "date": "2026-07-08",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 19,
+    "date": "2026-07-08",
+    "type": "agent",
+    "description": "CTO Agent finished (—)",
+    "status": "success",
+    "product": "DevOS"
+  },
+  {
+    "id": 18,
+    "date": "2026-07-08",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 17,
+    "date": "2026-07-08",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 16,
+    "date": "2026-07-08",
+    "type": "qa",
+    "description": "QA Agent: 1 checks failed — DevOS Control Center",
+    "status": "fail",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 15,
+    "date": "2026-07-07",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — QuickQR",
+    "status": "success",
+    "product": "QuickQR"
+  },
+  {
+    "id": 14,
+    "date": "2026-07-07",
+    "type": "qa",
+    "description": "QA Agent: 14 checks failed — QuickQR",
+    "status": "fail",
+    "product": "QuickQR"
+  },
+  {
+    "id": 13,
+    "date": "2026-07-07",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 12,
+    "date": "2026-07-07",
+    "type": "qa",
+    "description": "QA Agent: 15/15 checks passed — DevOS Control Center",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
     "id": 11,
     "date": "2026-07-07",
     "type": "qa",

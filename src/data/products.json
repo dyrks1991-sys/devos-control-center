@@ -10,7 +10,7 @@
     "description": "Free, browser-based QR code generator. No account. No upload. Instant PNG download.",
     "elevatorPitch": "The fastest way to create a QR code online. Type your URL, get a QR code, download as PNG.",
     "qaScore": "24/24",
-    "seoScore": 34,
+    "seoScore": 82,
     "launchDate": "2026-07-05",
     "techStack": "Next.js 14 · qrcode.react · Tailwind CSS",
     "sprint": 1,

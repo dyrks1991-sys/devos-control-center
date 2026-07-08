@@ -26,14 +26,32 @@ import {
   getGrowthMetrics,
   getFinance,
   getHealthScore,
+  getKPIs,
+  getProductKPIs,
+  getQ3Targets,
   getCompanyStats,
+  getTimeline,
+  getRecommendations,
+  getInitiatives,
+  getLearningRecords,
+  getDecisionEngineOutput,
+  getConnectorReport,
 } from './db'
 
-export const PRODUCTS     = getProducts()
-export const AGENTS       = getAgents()
-export const ACTIVITIES   = getEvents()
-export const APPROVALS    = getDecisions()
-export const GROWTH_DATA  = getGrowthMetrics()
-export const FINANCE      = getFinance()
-export const HEALTH_SCORE = getHealthScore()
-export const LAST_UPDATED = getCompanyStats().lastUpdated
+export const PRODUCTS         = getProducts()
+export const AGENTS           = getAgents()
+export const ACTIVITIES       = getEvents()
+export const APPROVALS        = getDecisions()
+export const GROWTH_DATA      = getGrowthMetrics()
+export const FINANCE          = getFinance()
+export const HEALTH_SCORE     = getHealthScore()
+export const KPIS             = getKPIs()
+export const PRODUCT_KPIS     = getProductKPIs()
+export const Q3_TARGETS       = getQ3Targets()
+export const LAST_UPDATED     = getCompanyStats().lastUpdated
+export const TIMELINE         = getTimeline()
+export const RECOMMENDATIONS  = getRecommendations()
+export const INITIATIVES      = getInitiatives()
+export const LEARNING         = getLearningRecords()
+export const DECISION_ENGINE  = getDecisionEngineOutput()
+export const CONNECTORS       = getConnectorReport()

@@ -1,5 +1,37 @@
 [
   {
+    "id": 25,
+    "date": "2026-07-09",
+    "type": "deploy",
+    "description": "Sprint 17 deployed — CEO Operating System: Company page, Product Detail pages, mobile UX overhaul",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 24,
+    "date": "2026-07-09",
+    "type": "plan",
+    "description": "Sprint 17 implemented: /company (5 sections), /product/[slug] dynamic routes, BottomNav redesign, Sidebar grouped nav",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 23,
+    "date": "2026-07-09",
+    "type": "strategy",
+    "description": "DevOS reframed as CEO Operating System — Home screen, Company page, Product Detail pages per product",
+    "status": "info",
+    "product": "DevOS Control Center"
+  },
+  {
+    "id": 22,
+    "date": "2026-07-09",
+    "type": "brief",
+    "description": "Sprint 17 CEO Report generated — Company OS transformation complete, 3 new routes added",
+    "status": "success",
+    "product": "DevOS Control Center"
+  },
+  {
     "id": 21,
     "date": "2026-07-08",
     "type": "qa",

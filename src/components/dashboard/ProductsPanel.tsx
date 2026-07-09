@@ -11,10 +11,14 @@ export default function ProductsPanel({ products }: ProductsPanelProps) {
 
   return (
     <Widget title="Products" subtitle={`${live.length} live · 0 revenue`} href="/portfolio">
-      <div className="space-y-3">
+      <div className="space-y-2">
         {live.map(p => (
-          <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer"
-             className="flex items-center justify-between p-3 bg-[#0f172a] border border-slate-800 rounded-xl hover:border-slate-600 transition-colors">
+          <Link
+            key={p.id}
+            href={`/product/${p.slug}`}
+            className="flex items-center justify-between p-3 bg-[#0f172a] border border-slate-800
+                       rounded-xl hover:border-slate-600 transition-all duration-150 active:scale-[0.98]"
+          >
             <div className="min-w-0">
               <div className="text-sm font-medium text-white">{p.name}</div>
               <div className="text-xs text-slate-500 mt-0.5 truncate">{p.tagline}</div>
@@ -23,10 +27,10 @@ export default function ProductsPanel({ products }: ProductsPanelProps) {
               <SeoScore score={p.seoScore} size="sm" />
               <StatusPill status="live" showDot />
             </div>
-          </a>
+          </Link>
         ))}
         {products.filter(p => p.status !== 'live').length > 0 && (
-          <div className="text-xs text-slate-600 text-center pt-1">
+          <div className="text-xs text-slate-700 text-center pt-1">
             +{products.filter(p => p.status !== 'live').length} in pipeline
           </div>
         )}

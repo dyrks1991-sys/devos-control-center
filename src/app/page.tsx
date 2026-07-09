@@ -27,6 +27,11 @@ export default function Dashboard() {
   const urgent  = APPROVALS.filter(a => (a.priority === 'P0' || a.priority === 'P1') && a.status === 'open').length
   const avgSeo  = live.length ? Math.round(live.reduce((s, p) => s + p.seoScore, 0) / live.length) : 0
 
+  const healthColor =
+    HEALTH_SCORE.total >= 75 ? 'text-emerald-400' :
+    HEALTH_SCORE.total >= 55 ? 'text-amber-400' :
+    'text-red-400'
+
   type StatColor = 'emerald' | 'amber' | 'red' | 'white'
   const statColorClass: Record<StatColor, string> = {
     emerald: 'text-emerald-400',
@@ -36,44 +41,66 @@ export default function Dashboard() {
   }
 
   const QUICK_STATS: Array<{ value: string | number; label: string; sublabel: string; color: StatColor }> = [
-    { value: live.length,   label: 'Products', sublabel: 'Live',      color: 'emerald' },
-    { value: traffic.connected && traffic.visitors !== null ? traffic.visitors.toLocaleString() : '—', label: 'Visitors', sublabel: '/month', color: 'white' },
-    { value: `${avgSeo}/100`, label: 'Avg SEO', sublabel: 'Portfolio', color: avgSeo >= 75 ? 'emerald' : avgSeo >= 55 ? 'amber' : 'red' },
-    { value: `${online}/${AGENTS.length}`, label: 'Agents', sublabel: 'Online', color: online === AGENTS.length ? 'emerald' : 'amber' },
+    { value: live.length, label: 'Products', sublabel: 'Live', color: 'emerald' },
+    {
+      value: traffic.connected && traffic.visitors !== null ? traffic.visitors.toLocaleString() : '—',
+      label: 'Visitors', sublabel: '/month', color: 'white',
+    },
+    {
+      value: `${avgSeo}/100`, label: 'Avg SEO', sublabel: 'Portfolio',
+      color: avgSeo >= 75 ? 'emerald' : avgSeo >= 55 ? 'amber' : 'red',
+    },
+    {
+      value: `${online}/${AGENTS.length}`, label: 'Agents', sublabel: 'Online',
+      color: online === AGENTS.length ? 'emerald' : 'amber',
+    },
   ]
 
   return (
     <div className="min-h-screen">
 
-      {/* Mobile sticky header */}
-      <div className="md:hidden sticky top-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-[#1f2937] px-4 py-3 flex items-center justify-between">
-        <div>
-          <div className="text-xs text-slate-500">DevOS</div>
-          <h1 className="text-sm font-bold text-white">CEO Dashboard</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          {urgent > 0 && (
-            <Link href="/approvals"
-              className="flex items-center gap-1.5 bg-red-400/10 border border-red-400/30 rounded-full px-2.5 py-1 text-xs text-red-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-              {urgent} urgent
-            </Link>
-          )}
-          <StatusPill status="ok" label="Live" />
+      {/* Mobile sticky header — OS-style */}
+      <div className="md:hidden sticky top-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-[#1f2937]">
+        <div className="px-4 py-3 flex items-center justify-between">
+          <div>
+            <div className="text-[10px] text-slate-500 uppercase tracking-widest">DevOS · CEO OS</div>
+            <h1 className="text-sm font-bold text-white">Command Center</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className={`text-lg font-bold tabular-nums ${healthColor}`}>{HEALTH_SCORE.total}</div>
+            <div className="text-[10px] text-slate-600 leading-tight">health<br/>score</div>
+            {urgent > 0 && (
+              <Link
+                href="/approvals"
+                className="flex items-center gap-1.5 bg-red-400/10 border border-red-400/30 rounded-full px-2.5 py-1 text-xs text-red-400 ml-1"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+                {urgent}
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="p-4 md:p-8 max-w-6xl mx-auto">
-        {/* Desktop header */}
-        <div className="hidden md:flex items-center justify-between mb-8">
+
+        {/* Desktop header — CEO Operating System */}
+        <div className="hidden md:flex items-start justify-between mb-8">
           <div>
-            <div className="text-2xl font-bold text-white">CEO Dashboard</div>
+            <div className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">DevOS · CEO Operating System</div>
+            <div className="text-2xl font-bold text-white">Command Center</div>
             <p className="text-slate-400 text-sm mt-1">{TODAY}</p>
           </div>
-          <StatusPill status="ok" label="All Systems Operational" />
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className={`text-3xl font-bold tabular-nums ${healthColor}`}>{HEALTH_SCORE.total}</div>
+              <div className="text-xs text-slate-500">Company Health</div>
+            </div>
+            <StatusPill status="ok" label="All Systems Operational" />
+          </div>
         </div>
 
-        {/* Quick stats bar */}
+        {/* Quick stats */}
         <div className="grid grid-cols-4 gap-3 mb-5">
           {QUICK_STATS.map(stat => (
             <div key={stat.label} className="bg-[#111827] border border-[#1f2937] rounded-2xl p-4 text-center">
@@ -86,12 +113,12 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* #1 Recommendation — AI Decision Engine */}
+        {/* #1 Priority Action */}
         <div className="mb-5">
           <TopOpportunity initiative={DECISION_ENGINE.topRecommendation} />
         </div>
 
-        {/* Today's Briefing */}
+        {/* AI CEO Briefing */}
         <div className="mb-5">
           <Briefing
             products={PRODUCTS}
@@ -102,7 +129,27 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Main grid — mobile: 1 col, tablet: 2 col, desktop: 3 col */}
+        {/* Company OS shortcuts */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+          {[
+            { href: '/company',    label: 'Company',    sub: 'Overview',      icon: '🏢', color: 'border-slate-700 hover:border-indigo-400/50' },
+            { href: '/portfolio',  label: 'Portfolio',  sub: `${live.length} products`, icon: '📦', color: 'border-slate-700 hover:border-emerald-400/50' },
+            { href: '/brief',      label: 'AI Brief',   sub: 'Full report',   icon: '🧠', color: 'border-slate-700 hover:border-blue-400/50' },
+            { href: '/decisions',  label: 'Decisions',  sub: `${RECOMMENDATIONS.length} pending`, icon: '⚡', color: 'border-slate-700 hover:border-amber-400/50' },
+          ].map(s => (
+            <Link
+              key={s.href}
+              href={s.href}
+              className={`bg-[#111827] border rounded-2xl p-4 transition-all duration-150 active:scale-95 ${s.color}`}
+            >
+              <div className="text-lg mb-1">{s.icon}</div>
+              <div className="text-sm font-semibold text-white">{s.label}</div>
+              <div className="text-xs text-slate-600 mt-0.5">{s.sub}</div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5">
 
           <div className="md:col-span-2">
@@ -133,7 +180,7 @@ export default function Dashboard() {
             <DeployPanel data={vercel} />
           </div>
 
-          {/* AI Recommendations — full width */}
+          {/* AI Decisions — full width */}
           <div className="md:col-span-2 xl:col-span-3">
             <DecisionCenter recommendations={RECOMMENDATIONS.slice(0, 4)} />
           </div>
@@ -143,7 +190,7 @@ export default function Dashboard() {
             <AgentPanel agents={AGENTS} />
           </div>
 
-          {/* Agent Activity Feed — full width */}
+          {/* Activity Feed — full width */}
           <div className="md:col-span-2 xl:col-span-3">
             <div className="bg-[#111827] border border-[#1f2937] rounded-2xl overflow-hidden">
               <div className="flex items-center justify-between px-5 pt-5 pb-4">
@@ -175,12 +222,14 @@ export default function Dashboard() {
               { label: 'GitHub API',                connected: false },
               { label: 'Stripe',                    connected: false },
             ].map(s => (
-              <span key={s.label}
+              <span
+                key={s.label}
                 className={`text-xs border rounded-full px-2.5 py-0.5 ${
                   s.connected
                     ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5'
                     : 'text-slate-600 border-slate-800'
-                }`}>
+                }`}
+              >
                 {s.connected ? '●' : '○'} {s.label}
               </span>
             ))}

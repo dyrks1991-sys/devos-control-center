@@ -1,12 +1,37 @@
 [
   {
+    "id": "t017",
+    "date": "2026-07-09",
+    "type": "sprint",
+    "title": "Sprint 17 — CEO Operating System",
+    "description": "Control Center upgraded to CEO OS. Company overview page (Products/Growth/Architecture/Team/Timeline), Product Detail pages for every product, mobile experience overhaul, Product detail links across all panels.",
+    "sprint": 17,
+    "status": "success"
+  },
+  {
+    "id": "t017b",
+    "date": "2026-07-09",
+    "type": "architecture",
+    "title": "Company + Product Detail routing",
+    "description": "/company page with 5 sections (Products, Growth, Architecture, Team, Timeline). /product/[slug] dynamic route for every product with health, SEO, deploy history, and recommended actions.",
+    "status": "success"
+  },
+  {
+    "id": "t017c",
+    "date": "2026-07-09",
+    "type": "milestone",
+    "title": "DevOS is now a CEO Operating System",
+    "description": "Control Center reframed from reporting dashboard to CEO Operating System. Sidebar grouped by function, bottom nav redesigned for native iPhone feel, health score prominent on mobile header.",
+    "status": "success"
+  },
+  {
     "id": "t014",
     "date": "2026-07-09",
     "type": "sprint",
     "title": "Sprint 14 — AI CEO Assistant",
     "description": "AI briefing engine, Decision Center with AI recommendations, Agent Activity Feed, and Company Timeline. Control Center v3.",
     "sprint": 14,
-    "status": "in-progress"
+    "status": "success"
   },
   {
     "id": "t013",
